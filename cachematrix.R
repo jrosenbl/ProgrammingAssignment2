@@ -7,13 +7,13 @@
 ## that results in a matrix.  This function is basically the same as the makeVector() function
 ## given in the description of this assignment but with different variable and function names. 
 
-makeCacheMatrix <- function(m = matrix()) {
+makeCacheMatrix <- function(x = matrix()) {
   im <- NULL
   set <- function(y) {
-    m <<- y
+    x <<- y
     im <<- NULL
   }
-  get <- function() m
+  get <- function() x
   setInverse <- function(inverse) im <<- inverse
   getInverse <- function() im
   list(set = set, get = get,
@@ -23,27 +23,27 @@ makeCacheMatrix <- function(m = matrix()) {
 
 
 ## Write a short comment describing this function
-## This function 
+## This function is very similar to the 
 ##  1. retrieves the matrix stored in the matrix object argument.
 ##  2. checks that it is a square matrix since we can only compute the inverse of square matrices.
 ##  3. checks to see of the matrix's inverse is already cached in the matrix object
 ##  4. if object's cache is empty, computes the inverse and caches it.
 ##  5. returns the inverse.
 
-cacheSolve <- function(matrix, ...) {
+cacheSolve <- function(x, ...) {
         ## Return a matrix that is the inverse of 'x'
-  m = matrix$get()
+  m = x$get()
   dimensions = dim(m)
   if (dimensions[1] != dimensions[2]) {
     message("ERROR: must be a square matrix")
     return(NULL)
   }
-  inverse = matrix$getInverse()
+  inverse = x$getInverse()
   if (!is.null(inverse)) {
     message("returning cache data")
   } else {
     inverse = solve(m)
-    matrix$setInverse(inverse)
+    x$setInverse(inverse)
   }
   return(inverse)
 }
