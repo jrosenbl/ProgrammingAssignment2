@@ -46,7 +46,7 @@ cacheSolve <- function(x, ...) {
   if (!is.null(inverse)) {
     message("returning cache data")
   } else {
-    inverse = solve(m)
+    inverse = solve(m, ...)
     x$setInverse(inverse)
   }
   return(inverse)
